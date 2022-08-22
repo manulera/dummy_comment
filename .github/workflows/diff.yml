@@ -1,0 +1,30 @@
+name: 'Create ROBOT diffs on Pull requests'
+
+on:
+  # Triggers the workflow on pull request events for the master branch
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    create_diff_file:
+      runs-on: ubuntu-latest
+      steps:
+        # Checks-out the branch being merged into master in the root directory
+        # The ontology obo file path will be: src/ontology/fypo-edit.owl
+        - uses: actions/checkout@v2
+        # Checks-out the master branch in a subfolder called master
+        # The ontology obo file path will be: master/src/ontology/fypo-edit.owl
+        - uses: actions/checkout@v2
+          with:
+            ref: master
+            path: master
+        - name: Run dummy
+          run: >
+            echo 'hello world\n' > dummy.txt;
+            echo 'bye bye\n' >> dummy.txt
+        - name: Post comment
+          uses: NejcZdovc/comment-pr@v1.1.1
+          with:
+            file: "dummy.txt"
+            identifier: "HELLO"
