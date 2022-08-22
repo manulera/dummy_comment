@@ -26,6 +26,8 @@ jobs:
           echo 'hello world\n' > dummy.txt;
           echo 'bye bye\n' >> dummy.txt
       - name: Post comment
+        env:
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         uses: NejcZdovc/comment-pr@v1.1.1
         with:
           file: "dummy.txt"
