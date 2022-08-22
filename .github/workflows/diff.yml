@@ -17,8 +17,9 @@ jobs:
       - uses: Bhacaz/checkout-files@v2
         with:
           files: .github/workflows/diff.yml
+          branch: ${{ github.head_ref}}
       - name: Run dummy
-        run: ls > dummy.txt;
+        run: cat .github/workflows/diff.yml > dummy.txt;
       - name: Post comment
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
