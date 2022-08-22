@@ -16,7 +16,7 @@ jobs:
       # The ontology obo file path will be: src/ontology/fypo-edit.owl
       - uses: Bhacaz/checkout-files@v2
         with:
-          files: .github/diff.yml
+          files: .github/workflows/diff.yml
       - name: Run dummy
         run: ls > dummy.txt;
       - name: Post comment
