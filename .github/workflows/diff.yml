@@ -27,12 +27,13 @@ jobs:
           printf "bye bye\n" >> dummy.txt
       - name: Check that file is right
         run: >
-          printf "path is right\n" >> dummy.txt;
-          printf "the second time\n" >> dummy.txt
+          printf "<details>\n<summary>Change in edit file</summary>" > comment.txt;
+          cat dummy.txt >> comment.txt
+          printf "\n</details>" >> comment.txt
       - name: Post comment
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         uses: NejcZdovc/comment-pr@v1.1.1
         with:
-          file: "../../dummy.txt"
+          file: "../../comment.txt"
           identifier: "HELLO"
