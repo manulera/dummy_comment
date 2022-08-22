@@ -23,12 +23,12 @@ jobs:
           path: master
       - name: Run dummy
         run: >
-          echo "hello world\n" > dummy.txt;
-          echo "bye bye\n" >> dummy.txt
+          printf "hello world\n" > dummy.txt;
+          printf "bye bye\n" >> dummy.txt
       - name: Check that file is right
         run: >
-          echo "path is right\n" > dummy.txt;
-          echo "the second time\n" >> dummy.txt
+          printf "path is right\n" >> dummy.txt;
+          printf "the second time\n" >> dummy.txt
       - name: Post comment
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
