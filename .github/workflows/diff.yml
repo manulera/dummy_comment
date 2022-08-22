@@ -18,7 +18,6 @@ jobs:
         with:
           files: .github/workflows/diff.yml
           branch: ${{ github.head_ref}}
-        run: echo hello;
       - name: Run dummy
         run: cat .github/workflows/diff.yml > dummy.txt;
       - name: Post comment
