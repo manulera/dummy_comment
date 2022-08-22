@@ -14,26 +14,15 @@ jobs:
     steps:
       # Checks-out the branch being merged into master in the root directory
       # The ontology obo file path will be: src/ontology/fypo-edit.owl
-      - uses: actions/checkout@v2
-      # Checks-out the master branch in a subfolder called master
-      # The ontology obo file path will be: master/src/ontology/fypo-edit.owl
-      - uses: actions/checkout@v2
+      - uses: Bhacaz/checkout-files@v2
         with:
-          ref: master
-          path: master
+          files: .github/diff.yml
       - name: Run dummy
-        run: >
-          printf "hello world\n" > dummy.txt;
-          printf "bye bye\n" >> dummy.txt
-      - name: Check that file is right
-        run: >
-          printf "<details>\n<summary>Change in edit file</summary>" > comment.txt;
-          cat dummy.txt >> comment.txt;
-          printf "\n</details>" >> comment.txt;
+        run: ls > dummy.txt;
       - name: Post comment
         env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         uses: NejcZdovc/comment-pr@v1.1.1
         with:
-          file: "../../comment.txt"
+          file: "../../dummy.txt"
           identifier: "HELLO"
